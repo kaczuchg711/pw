@@ -1,0 +1,5 @@
+.idea
+CMakeLists.txt
+FILTRY
+*.out
+cmake-build-debug

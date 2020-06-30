@@ -1,0 +1,6 @@
+cmake-build-debug
+.idea
+CMakeLists.txt
+search_max/search_max_openmp/test_search_max_openmp
+*.o
+*.copy

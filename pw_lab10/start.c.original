@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <mpi.h>
+
+int main(int argc, char *argv[])
+{
+
+	int npes;
+	int myrank;
+	double start, end;
+
+	MPI_Init(&argc, &argv);
+	
+	start = MPI_Wtime();
+	MPI_Comm_size(MPI_COMM_WORLD, &npes);
+	MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+
+	if (myrank == 0) {
+		int x = 10;
+		MPI_Send(&x, 1, MPI_INT, 1, 13, MPI_COMM_WORLD);	
+	} else if (myrank == 1) {
+		MPI_Status status;
+		int y = 0;
+		MPI_Recv(&y, 1, MPI_INT, 0, 13, MPI_COMM_WORLD, &status);
+		printf("process 1 received number %d from process 0 \n", y);
+	}
+
+	
+	end = MPI_Wtime();
+	MPI_Finalize();
+
+	if (myrank == 0) {
+		printf("end of process %lf\n", end-start);
+	}
+	return 0;
+}

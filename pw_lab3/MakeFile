@@ -1,0 +1,9 @@
+
+main: main.c
+	gcc -o main main.c -pthread
+
+watki: watki.c
+	gcc -o watki watki.c -pthread -D_GNU_SOURCE
+
+clean:
+	rm main
